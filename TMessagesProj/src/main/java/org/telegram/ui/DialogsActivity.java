@@ -2863,7 +2863,7 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
             allowUsers = arguments.getBoolean("allowUsers", true);
             allowBots = arguments.getBoolean("allowBots", true);
             closeFragment = arguments.getBoolean("closeFragment", true);
-            allowGlobalSearch = arguments.getBoolean("allowGlobalSearch", true);
+            allowGlobalSearch = false; // Forced to false to disable global search on main screen
             hasMainTabs = arguments.getBoolean("hasMainTabs", false);
 
             byte[] requestPeerTypeBytes = arguments.getByteArray("requestPeerType");
@@ -12747,16 +12747,8 @@ public class DialogsActivity extends BaseFragment implements NotificationCenter.
         if (StoryRecorder.isVisible() || (getLastStoryViewer() != null && getLastStoryViewer().isFullyVisible())) {
             animated = false;
         }
-        boolean onlySelfStories = !isArchive() && getStoriesController().hasOnlySelfStories();
-        boolean newVisibility;
-        if (communityId != 0) {
-            newVisibility = false;
-        } else if (isArchive()) {
-            newVisibility = !getStoriesController().getHiddenList().isEmpty();
-        } else {
-            newVisibility = !onlySelfStories && getStoriesController().hasStories();
-            onlySelfStories = getStoriesController().hasOnlySelfStories();
-        }
+        boolean newVisibility = false; // Forced to false to hide stories bar
+        boolean onlySelfStories = false; // Also forced to false
 
         hasOnlySlefStories = onlySelfStories;
 

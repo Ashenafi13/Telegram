@@ -225,6 +225,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
     private int searchBotsId;
     public String query;
     private void searchMessages(boolean next) {
+        /* // Global search disabled
         loadingMessages = true;
         final int searchId = ++searchBotsId;
         TLRPC.TL_messages_searchGlobal req = new TLRPC.TL_messages_searchGlobal();
@@ -277,6 +278,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                 update(true);
             }));
         }, next ? 800 : 0);
+        */
 
         if (!next) {
             loadingBots = true;
@@ -311,32 +313,8 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                     }
                 }
 
-//                searchRecommendedChannels.clear();
-//                String q = this.query.toLowerCase(), qT = AndroidUtilities.translitSafe(q);
-//                MessagesController.ChannelRecommendations recommendations = MessagesController.getInstance(currentAccount).getCachedChannelRecommendations(0);
-//                if (recommendations != null && !recommendations.chats.isEmpty()) {
-//                    for (TLRPC.Chat chat : recommendations.chats) {
-//                        if (chat == null)
-//                            continue;
-//                        if (!ChatObject.isChannelAndNotMegaGroup(chat))
-//                            continue;
-//                        TLRPC.Chat localChat = MessagesController.getInstance(currentAccount).getChat(chat.id);
-//                        if (!(ChatObject.isNotInChat(chat) && (localChat == null || ChatObject.isNotInChat(localChat))))
-//                            continue;
-//                        String t = chat.title.toLowerCase(), tT = AndroidUtilities.translitSafe(t);
-//                        if (
-//                                t.startsWith(q) || t.contains(" " + q) ||
-//                                        tT.startsWith(qT) || tT.contains(" " + qT)
-//                        ) {
-//                            if (chatIds.contains(chat.id))
-//                                continue;
-//                            chatIds.add(chat.id);
-//                            searchRecommendedChannels.add(chat);
-//                        }
-//                    }
-//                }
-
                 searchGlobal.clear();
+                /* // Global search results disabled
                 if (response != null) {
                     for (TLRPC.Peer peer : response.results) {
                         if (!(peer instanceof TLRPC.TL_peerUser)) continue;
@@ -348,6 +326,7 @@ public class DialogsBotsAdapter extends UniversalAdapter {
                         searchGlobal.add(user);
                     }
                 }
+                */
 
                 if (listView != null) {
                     listView.scrollToPosition(0);

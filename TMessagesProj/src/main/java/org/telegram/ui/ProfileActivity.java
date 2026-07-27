@@ -10315,7 +10315,7 @@ public class ProfileActivity extends BaseFragment implements NotificationCenter.
     }
 
     private boolean needInsetForStories() {
-        return getMessagesController().getStoriesController().hasStories(getDialogId()) && !isTopic;
+        return getDialogId() == UserConfig.getInstance(currentAccount).getClientUserId() && getMessagesController().getStoriesController().hasStories(getDialogId()) && !isTopic;
     }
 
     public void setUserInfo(

@@ -194,6 +194,7 @@ public class DialogsChannelsAdapter extends UniversalAdapter {
     private int searchChannelsId;
     public String query;
     private void searchMessages(boolean next) {
+        /* // Global search disabled
         loadingMessages = true;
         final int searchId = ++searchChannelsId;
         TLRPC.TL_messages_searchGlobal req = new TLRPC.TL_messages_searchGlobal();
@@ -246,6 +247,7 @@ public class DialogsChannelsAdapter extends UniversalAdapter {
                 update(true);
             }));
         }, next ? 800 : 0);
+        */
 
         if (!next) {
             loadingChannels = true;
@@ -283,6 +285,7 @@ public class DialogsChannelsAdapter extends UniversalAdapter {
                 }
 
                 searchRecommendedChannels.clear();
+                /* // Recommendations disabled
                 String q = this.query.toLowerCase(), qT = AndroidUtilities.translitSafe(q);
                 MessagesController.ChannelRecommendations recommendations = MessagesController.getInstance(currentAccount).getCachedChannelRecommendations(0);
                 if (recommendations != null && !recommendations.chats.isEmpty()) {
@@ -307,8 +310,10 @@ public class DialogsChannelsAdapter extends UniversalAdapter {
                         }
                     }
                 }
+                */
 
                 searchChannels.clear();
+                /* // Global search results disabled
                 if (response != null) {
                     for (TLRPC.Peer peer : response.results) {
                         if (!(peer instanceof TLRPC.TL_peerChannel)) continue;
@@ -322,6 +327,7 @@ public class DialogsChannelsAdapter extends UniversalAdapter {
                         searchChannels.add(channel);
                     }
                 }
+                */
 
                 update(true);
             });

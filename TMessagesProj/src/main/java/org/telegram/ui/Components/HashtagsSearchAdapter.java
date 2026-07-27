@@ -87,6 +87,8 @@ public class HashtagsSearchAdapter extends UniversalAdapter {
         }
         final int id = ++searchId;
         if (hashtag == null) return;
+
+        /* // Global hashtag search disabled
         loading = true;
         update(true);
         AndroidUtilities.runOnUIThread(searchRunnable = () -> {
@@ -146,6 +148,7 @@ public class HashtagsSearchAdapter extends UniversalAdapter {
                 }
             }));
         }, 300);
+        */
     }
 
     public String getHashtag(String query) {

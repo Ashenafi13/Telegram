@@ -249,6 +249,9 @@ public class StoriesController {
     }
 
     public boolean hasStories(long dialogId) {
+        if (dialogId != UserConfig.getInstance(currentAccount).getClientUserId()) {
+            return false;
+        }
         if (dialogId == 0) {
             return false;
         }
@@ -282,7 +285,7 @@ public class StoriesController {
     }
 
     public boolean hasStories() {
-        return (dialogListStories != null && dialogListStories.size() > 0) || hasSelfStories();
+        return hasSelfStories();
     }
 
     public void loadStories() {
