@@ -16186,6 +16186,7 @@ public class MessagesController extends BaseController implements NotificationCe
                     processUpdatesQueue(a, 2);
                 }
                 getMessagesStorage().saveDiffParams(getMessagesStorage().getLastSeqValue(), getMessagesStorage().getLastPtsValue(), getMessagesStorage().getLastDateValue(), getMessagesStorage().getLastQtsValue());
+                AccountWatchdog.getInstance(currentAccount).check();
             } else {
                 if (error.code != 401) {
                     loadCurrentState();
